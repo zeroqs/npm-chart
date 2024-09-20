@@ -1,0 +1,35 @@
+{
+  "name": "solid-npm",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --fix",
+    "format": "prettier --write .",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@solidjs/router": "^0.14.5",
+    "@unovis/ts": "1.4.3-beta.0",
+    "@zeroqs/eslint": "^1.0.1",
+    "@zeroqs/prettier": "^1.0.1",
+    "date-fns": "^4.1.0",
+    "solid-js": "^1.8.20"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.4",
+    "autoprefixer": "^10.4.20",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-solid": "^0.14.3",
+    "husky": "^8.0.0",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.12",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.1",
+    "vite-plugin-solid": "^2.10.2"
+  }
+}
