@@ -1,4 +1,4 @@
-const fetchUrl = 'https://npm.chart.dev/api/react';
+const fetchUrl = 'https://npm.chart.dev/api';
 
 export interface FetchData {
   name: string
