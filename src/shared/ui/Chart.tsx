@@ -30,7 +30,7 @@ export const Chart = (props: ComponentProps<'div'> & Props) => {
   const chartData = () => props.data();
   let chartRef;
 
-  const data = createMemo(() => {
+  const data = createMemo<Data[]>(() => {
     const periodData = {} as Record<string, Data>;
     const periodFormat = 'MM-yyyy'; // MM-yyyy - monthly, ww-yyyy - week
     for (const date in chartData()?.downloads) {
@@ -59,10 +59,17 @@ export const Chart = (props: ComponentProps<'div'> & Props) => {
   };
 
   onMount(() => {
+    // Явное указание типа Data для осей
+    const xAxis = new Axis<Data>({ type: 'x', tickFormat: (_, i) => xTicks(i) });
+    const yAxis = new Axis<Data>({ type: 'y', tickFormat: (value, maximumFractionDigits) => formatNumberCompact(Number(value), maximumFractionDigits) });
+
+    // eslint-disable-next-line ts/ban-ts-comment
+    // @ts-ignore
+    // eslint-disable-next-line unused-imports/no-unused-vars
     const chart = new XYContainer(chartRef!, {
       components: [line, area],
-      xAxis: new Axis({ type: 'x', tickFormat: (_, i) => xTicks(i) }),
-      yAxis: new Axis({ type: 'y', tickFormat: (value, maximumFractionDigits) => formatNumberCompact(Number(value), maximumFractionDigits) }),
+      xAxis,
+      yAxis,
       width: 650
     }, data());
   });
