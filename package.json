@@ -17,7 +17,8 @@
     "@zeroqs/eslint": "^1.0.1",
     "@zeroqs/prettier": "^1.0.1",
     "date-fns": "^4.1.0",
-    "solid-js": "^1.8.20"
+    "solid-js": "^1.8.20",
+    "tailwindcss-animated": "^1.1.2"
   },
   "devDependencies": {
     "@types/node": "^20.10.4",
