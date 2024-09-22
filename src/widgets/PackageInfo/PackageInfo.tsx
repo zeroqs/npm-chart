@@ -4,7 +4,7 @@ import type { FetchData } from '@/shared/api';
 import { Chart } from '@/shared/ui/Chart';
 
 interface Props {
-  data: Resource<FetchData>;
+  data: Resource<FetchData | undefined>;
 }
 const formatNumber = new Intl.NumberFormat('en', { maximumFractionDigits: 0 }).format;
 

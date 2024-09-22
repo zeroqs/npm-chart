@@ -8,7 +8,7 @@ import type { FetchData } from '@/shared/api';
 interface Data { amount: number; date: string }
 
 interface Props {
-  data: Resource<FetchData>
+  data: Resource<FetchData | undefined>
 }
 
 const x = (_: Data, i: number) => i;
