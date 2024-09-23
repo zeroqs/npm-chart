@@ -1,3 +1,5 @@
+'use server';
+
 import { endOfMonth, format, subMonths } from 'date-fns';
 
 export interface FetchData {

@@ -4,21 +4,25 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "preview": "vite preview",
+    "dev": "vinxi dev",
+    "build": "vinxi build",
+    "start": "vinxi start",
+    "version": "vinxi version",
     "lint": "eslint . --fix",
     "format": "prettier --write .",
     "prepare": "husky install"
   },
   "dependencies": {
+    "@solidjs/meta": "^0.29.4",
     "@solidjs/router": "^0.14.5",
+    "@solidjs/start": "^1.0.6",
     "@unovis/ts": "1.4.3-beta.0",
     "@zeroqs/eslint": "^1.0.1",
     "@zeroqs/prettier": "^1.0.1",
     "date-fns": "^4.1.0",
     "solid-js": "^1.8.20",
-    "tailwindcss-animated": "^1.1.2"
+    "tailwindcss-animated": "^1.1.2",
+    "vinxi": "^0.4.1"
   },
   "devDependencies": {
     "@types/node": "^20.10.4",
@@ -29,8 +33,6 @@
     "husky": "^8.0.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.12",
-    "typescript": "^5.5.3",
-    "vite": "^5.4.1",
-    "vite-plugin-solid": "^2.10.2"
+    "typescript": "^5.5.3"
   }
 }

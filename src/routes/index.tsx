@@ -2,8 +2,8 @@ import { useNavigate } from '@solidjs/router';
 import type { JSX } from 'solid-js';
 import { createSignal } from 'solid-js';
 
-import { IconSearch } from '@/shared/icons/IconSearch';
-import { Input } from '@/shared/ui/Input';
+import { IconSearch } from '~/shared/icons/IconSearch';
+import { Input } from '~/shared/ui/Input';
 
 export default function Home() {
   const [search, setSearch] = createSignal('');
@@ -15,7 +15,7 @@ export default function Home() {
 
   const handleSubmit: JSX.EventHandlerUnion<HTMLFormElement, SubmitEvent> = (event) => {
     event.preventDefault();
-    navigate(`/package/${search()}`);
+    navigate(`/${search()}`);
   };
 
   return (

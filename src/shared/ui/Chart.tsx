@@ -1,17 +1,20 @@
+import type { AccessorWithLatest } from '@solidjs/router';
 import { Area, Axis, Line, XYContainer } from '@unovis/ts';
 import { format } from 'date-fns';
-import type { ComponentProps, Resource } from 'solid-js';
+import type { ComponentProps } from 'solid-js';
 import { createMemo, onMount } from 'solid-js';
 
-import type { FetchData } from '@/shared/api';
+import type { FetchData } from '~/shared/api';
 
 interface Data { amount: number; date: string }
 
 interface Props {
-  data: Resource<FetchData | undefined>
+  data: AccessorWithLatest<FetchData | undefined>;
 }
 
-const x = (_: Data, i: number) => i;
+function x(_: Data, i: number) {
+  return i;
+}
 const y = (d: Data) => d.amount;
 
 const line = new Line<Data>({

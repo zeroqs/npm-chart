@@ -1,10 +1,10 @@
-import type { Resource } from 'solid-js';
+import type { AccessorWithLatest } from '@solidjs/router';
 
-import type { FetchData } from '@/shared/api';
-import { Chart } from '@/shared/ui/Chart';
+import type { FetchData } from '~/shared/api';
+import { Chart } from '~/shared/ui/Chart';
 
 interface Props {
-  data: Resource<FetchData | undefined>;
+  data: AccessorWithLatest<FetchData | undefined>;
 }
 const formatNumber = new Intl.NumberFormat('en', { maximumFractionDigits: 0 }).format;
 
