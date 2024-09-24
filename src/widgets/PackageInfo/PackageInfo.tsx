@@ -35,7 +35,9 @@ export const PackageInfo = (props: Props) => {
         <p class='text-sm text-muted-foreground mt-2'>{formatNumber(props.data()?.total || 0)} total npm downloads</p>
 
       </div>
-      <Chart data={props.data} class='animate-fade animate-ease-in-out border-[18px] rounded-md border-[#4D8CFD] p-4' />
+      <div class='animate-fade animate-ease-in-out border-[24px] rounded-md border-[#4D8CFD] p-6'>
+        <Chart data={props.data} />
+      </div>
     </>
   );
 };
