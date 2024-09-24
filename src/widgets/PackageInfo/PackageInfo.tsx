@@ -1,7 +1,9 @@
 import type { AccessorWithLatest } from '@solidjs/router';
+import { clientOnly } from '@solidjs/start';
 
 import type { FetchData } from '~/shared/api';
-import { Chart } from '~/shared/ui/Chart';
+
+const Chart = clientOnly(() => import('~/shared/ui/Chart'));
 
 interface Props {
   data: AccessorWithLatest<FetchData | undefined>;

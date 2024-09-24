@@ -1,5 +1,5 @@
-import { A, cache, createAsync, useParams } from '@solidjs/router';
-import { createResource, Show, Suspense } from 'solid-js';
+import { A, useParams } from '@solidjs/router';
+import { createResource, Suspense } from 'solid-js';
 
 import { fetchNpmData } from '~/shared/api';
 import { IconSearch } from '~/shared/icons/IconSearch';
@@ -8,7 +8,8 @@ import { Skeleton } from '~/widgets/PackageInfo/Skeleton';
 
 export default function Package() {
   const { packageName } = useParams();
-  const data = createAsync(() => fetchNpmData(packageName));
+
+  const [data] = createResource(() => fetchNpmData(packageName));
 
   return (
     <main class='flex justify-center items-center h-screen'>
@@ -18,11 +19,13 @@ export default function Package() {
           class='flex items-center gap-2 font-medium underline underline-offset-4 text-[#4D8CFD] text-sm text-muted-foreground mt-2'
         >
           <IconSearch size={14} />
-
           Search another package {packageName}
         </A>
 
-        <PackageInfo data={data} />
+        <Suspense fallback={<Skeleton />}>
+          <PackageInfo data={data} />
+        </Suspense>
+
       </div>
     </main>
   );

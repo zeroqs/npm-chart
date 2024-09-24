@@ -29,7 +29,7 @@ const area = new Area<Data>({
   opacity: 0.1
 });
 
-export const Chart = (props: ComponentProps<'div'> & Props) => {
+const Chart = (props: ComponentProps<'div'> & Props) => {
   const chartData = () => props.data();
   let chartRef;
 
@@ -62,13 +62,14 @@ export const Chart = (props: ComponentProps<'div'> & Props) => {
   };
 
   onMount(() => {
-    // Явное указание типа Data для осей
+    if (!chartRef) return;
+
     const xAxis = new Axis<Data>({ type: 'x', tickFormat: (_, i) => xTicks(i) });
     const yAxis = new Axis<Data>({ type: 'y', tickFormat: (value, maximumFractionDigits) => formatNumberCompact(Number(value), maximumFractionDigits) });
 
     // eslint-disable-next-line ts/ban-ts-comment
     // @ts-ignore
-    // eslint-disable-next-line unused-imports/no-unused-vars
+
     const chart = new XYContainer(chartRef!, {
       components: [line, area],
       xAxis,
@@ -81,3 +82,5 @@ export const Chart = (props: ComponentProps<'div'> & Props) => {
     <div ref={chartRef} {...props} />
   );
 };
+
+export default Chart;

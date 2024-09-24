@@ -42,7 +42,6 @@ const fetchNpmDownloads = async (packageName: string): Promise<Record<string, nu
     const data = await response.json();
     const downloads = data[packageName] as Record<string, number>;
 
-    // Фильтруем данные, убираем те, где загрузок нет
     const filteredDownloads: Record<string, number> = {};
     for (const date in downloads) {
       if (downloads[date] > 0) {
