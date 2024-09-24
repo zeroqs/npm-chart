@@ -19,7 +19,7 @@ export default function Package() {
           class='flex items-center gap-2 font-medium underline underline-offset-4 text-[#4D8CFD] text-sm text-muted-foreground mt-2'
         >
           <IconSearch size={14} />
-          Search another package {packageName}
+          Search another package
         </A>
 
         <Suspense fallback={<Skeleton />}>

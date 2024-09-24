@@ -1,11 +1,14 @@
 import { useNavigate } from '@solidjs/router';
 import type { JSX } from 'solid-js';
-import { createSignal } from 'solid-js';
+import { createSignal, For, onMount } from 'solid-js';
 
 import { IconSearch } from '~/shared/icons/IconSearch';
+import { Badge } from '~/shared/ui/Badge';
 import { Input } from '~/shared/ui/Input';
+import { randomPackages } from '~/shared/utils';
 
 export default function Home() {
+  const [packages] = createSignal(randomPackages());
   const [search, setSearch] = createSignal('');
   const navigate = useNavigate();
 
@@ -33,7 +36,15 @@ export default function Home() {
             </button>
           </span>
         </form>
+        <div class='flex gap-2 items-center justify-center'>
+          <For each={packages()}>
+            {(item) => (
+              <Badge title={item} />
+            )}
+          </For>
+        </div>
       </div>
+
     </main>
   );
 }
