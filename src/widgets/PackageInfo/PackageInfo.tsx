@@ -1,5 +1,6 @@
 import type { AccessorWithLatest } from '@solidjs/router';
 import { clientOnly } from '@solidjs/start';
+import { Show } from 'solid-js';
 
 import type { FetchData } from '~/shared/api';
 
@@ -12,7 +13,7 @@ const formatNumber = new Intl.NumberFormat('en', { maximumFractionDigits: 0 }).f
 
 export const PackageInfo = (props: Props) => {
   return (
-    <>
+    <Show when={props.data()} fallback={<>not found</>}>
       <div class='self-start animate-fade animate-ease-in-out'>
         <div class='flex items-start gap-4'>
           <h3 class='scroll-m-20 text-2xl font-semibold tracking-wide'>
@@ -38,6 +39,6 @@ export const PackageInfo = (props: Props) => {
       <div class='animate-fade animate-ease-in-out border-[24px] rounded-md border-[#4D8CFD] p-6'>
         <Chart data={props.data} />
       </div>
-    </>
+    </Show>
   );
 };
