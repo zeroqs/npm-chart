@@ -1,5 +1,5 @@
 import type { AccessorWithLatest } from '@solidjs/router';
-import { Area, Axis, Line, XYContainer } from '@unovis/ts';
+import { Area, Axis, Crosshair, Line, Tooltip, XYContainer } from '@unovis/ts';
 import { format } from 'date-fns';
 import type { ComponentProps } from 'solid-js';
 import { createMemo, onMount } from 'solid-js';
@@ -29,6 +29,23 @@ const area = new Area<Data>({
   opacity: 0.1
 });
 
+const tooltip = new Tooltip({});
+
+const formatNumber = new Intl.NumberFormat('en', { maximumFractionDigits: 0 }).format;
+
+const formatDate = (date: string): string => {
+  return ({
+    weekly: format(date, 'd MMM'),
+    monthly: format(date, 'MMM yyy')
+  }).monthly;
+};
+
+const crosshair = new Crosshair<Data>({
+  template: (d) => `${formatDate(d.date)}: ${formatNumber(d.amount)}`,
+  x,
+  y
+});
+
 const Chart = (props: ComponentProps<'div'> & Props) => {
   const chartData = () => props.data();
   let chartRef;
@@ -45,13 +62,6 @@ const Chart = (props: ComponentProps<'div'> & Props) => {
   });
 
   const formatNumberCompact = (value: number, maximumFractionDigits: number = 0) => Intl.NumberFormat('en', { maximumFractionDigits, notation: 'compact' }).format(value);
-
-  const formatDate = (date: string): string => {
-    return ({
-      weekly: format(date, 'd MMM'),
-      monthly: format(date, 'MMM yyy')
-    }).monthly;
-  };
 
   const xTicks = (i: number) => {
     if (i === 0 || i === data.length - 1 || !data()[i]) {
@@ -74,7 +84,9 @@ const Chart = (props: ComponentProps<'div'> & Props) => {
       components: [line, area],
       xAxis,
       yAxis,
-      width: 650
+      width: 650,
+      crosshair,
+      tooltip
     }, data());
   });
 
