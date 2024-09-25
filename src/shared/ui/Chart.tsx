@@ -12,9 +12,9 @@ interface Props {
   data: AccessorWithLatest<FetchData | undefined>;
 }
 
-function x(_: Data, i: number) {
+const x = (_: Data, i: number) => {
   return i;
-}
+};
 const y = (d: Data) => d.amount;
 
 const line = new Line<Data>({
@@ -65,7 +65,7 @@ const Chart = (props: ComponentProps<'div'> & Props) => {
 
   const xTicks = (i: number) => {
     if (i === 0 || i === data.length - 1 || !data()[i]) {
-      return '';
+      return props.data()?.name || '';
     }
 
     return formatDate(data()[i].date);
